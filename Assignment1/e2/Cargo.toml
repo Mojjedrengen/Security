@@ -1,7 +1,8 @@
 [package]
-name = "handin"
+name = "e2"
 version = "0.1.0"
 edition = "2024"
 
 [dependencies]
-curv-kzen = "0.9.0"
+rand = "0.10.3"
+sha2 = "0.11.0"
