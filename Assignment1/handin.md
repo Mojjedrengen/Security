@@ -37,7 +37,18 @@ When running the code we get
 
 ## 1b. Modify the ciphertext **without the private key**
 
-Brute force
+```python
+def modify(c2: int, m: int, mprime: int, p: int) -> int:
+    m_m1 = pow(m, -1, p);
+    a = mprime * m_m1
+    return a * c2 % p
+```
+
+Above is a python implementation of the code to modify the text.
+Here are `c2` the intercepted cyphertext, `m` the known plaintext, `mprime` the target message and `p` from the public parameters.
+To modify the cyphertext we need an $`a = m' * m^(-1)`$.
+This `a` we then need to multiply with $c2 mod p$ to get the modified cyphertext at decrypts to mprime.
+$`E(m') = a * c2 % p`$
 
 ## Evidence to include
 
@@ -100,3 +111,11 @@ It also takes exponentially more time to find when we use more bits of the resul
 With it already taking a long time to find both a collision for a fixed string and when we use more bits, I conclude that sha-256 is not broken.
 And it should only be considered broken if you do not use all the 256 bits you get.
 Since you want to use all the 256 bits normally I would not consider it practically broken.
+
+# Exercise 3
+
+## 3a. Derive decryption
+
+$`Ek_1k_2 (P) = R_L(P ^ k_1) ^ k_2`$
+
+$`Dk_1k_2 (C) = R_R(C ^ k_2) ^ k_1`$

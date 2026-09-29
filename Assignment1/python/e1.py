@@ -67,10 +67,22 @@ print()
 # 1b
 """
 
+def modify(c2: int, m: int, mprime: int, p: int) -> int:
+    m_m1 = pow(m, -1, p);
+    a = mprime * m_m1
+    return a * c2 % p
 
-for x in range(0, p):
-    c2n = x * c2 % p
+modified = modify(c2, m, 12345, p)
+d = decrypt(x, p, c1 , modified)
+print("1b")
+print("m': ", d)
+
+
+
+for a in range(0, p):
+    c2n = a * c2 % p
     if decrypt(x, p, c1, c2n) == 12345:
         print("nx: ", x)
+        print("a: ", a)
         print("c2n: ", c2n)
         print("decrypt: ", decrypt(x, p, c1, c2n))
