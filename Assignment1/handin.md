@@ -114,20 +114,44 @@ Since you want to use all the 256 bits normally I would not consider it practica
 
 # Exercise 3
 
+- code: e3/src/main.rs
+
 ## 3a. Derive decryption
 
-$`Ek_1k_2 (P) = R_L(P ^ k_1) ^ k_2`$
+$`Ek_1k_2 (P) = R_L(P \oplus k_1) \oplus k_2`$
 
-$`Dk_1k_2 (C) = R_R(C ^ k_2) ^ k_1`$
+$`Dk_1k_2 (C) = R_R(C \oplus k_2) \oplus k_1`$
 
 ## 3b. Recover the challenge plaintext
 
-$C = R_L(P ^ k_1) ^ k_2$
-$C = R_L(P) ^ R_L(k_1) ^ k_2$
-$C = R_L(P) ^ M$
-$C_0 = R_L(P_0) ^ M$
-$M = R_L(p_0) ^ C_0$ <- Keys
+$`C = R_L(P \oplus k_1) \oplus k_2`$
 
-$R_L(P) = C ^ M$
-$P = R_R(C ^ M)$ <- Plaintext
-$P = R_R(C) ^ R_R(M)$ <- Plaintext
+$`C = R_L(P) \oplus R_L(k_1) \oplus k_2`$
+
+$`C = R_L(P) \oplus M`$
+
+$`C_0 = R_L(P_0) \oplus M`$
+
+$`M = R_L(p_0) \oplus C_0 <- Keys`$
+
+### Get Plaintext
+
+$`R_L(P) = C \oplus M`$
+
+$`P = R_R(C \oplus M)`$ <- Plaintext
+
+$`P = R_R(C) \oplus R_R(M)`$ <- Plaintext
+
+### Decrypted
+
+- C1
+  hex: 0x73747564656e743d3236303030202020
+  string: `"student=26000   "`
+
+- C2
+  hex: 0x67726164653d31322020202020202020
+  string: `"grade=12        "`
+
+- C3
+  hex: 0x617574686f72697365643d6e6f202020
+  string: `"authorised=no   "`
